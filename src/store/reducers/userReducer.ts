@@ -5,6 +5,8 @@ import { ActionsTypes, Reducers } from "../reduxStore";
 const initialState: UsersState = {
 	loading: false,
 	users: [],
+	//isSortedByCity: false,
+	//isSortedByCompany: false,
 };
 
 export interface UsersState {
@@ -27,6 +29,11 @@ const userReducer = (state = initialState, action: UsersAction): UsersState => {
 				...state,
 				loading: false, users: action.users
 			}
+		// case "SORT_USERS"
+		// 	return {
+		// 		...state, 
+		// 		loading: false,
+		// 	}
 
 		default:
 			return state;
@@ -46,9 +53,9 @@ type ThunkType = ThunkAction<Promise<void>, Reducers, unknown, UsersAction>
 export const fetchUsers = (): ThunkType => {
 	return async (dispatch, getState) => {
 		dispatch(actions.setFetchUsers())
-		const response = await axios.get('https://jsonplaceholder.typicode.com/users');
-		const users = response.data;
-		dispatch(actions.setFetchUsersSuccess(users));
+		const response = await axios.get('https://jsonplaceholder.typicode.com/users')
+			.then(res => res.data);
+		dispatch(actions.setFetchUsersSuccess(response));
 	}
 };
 

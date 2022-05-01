@@ -1,25 +1,29 @@
 import { useEffect } from "react";
-import { connect, useDispatch } from "react-redux";
+import { connect } from "react-redux";
 import { fetchUsers } from "../../store/reducers/userReducer";
 import { Reducers } from "../../store/reduxStore";
+import User from "./User";
 
-type PropsUsers = {
+interface PropsUsers {
 	loading: boolean,
 	users: Array<any>,
 	fetchUsers: () => void,
 };
 
-const UsersContainer: React.FC<PropsUsers> = (props) => {
-
-	console.log(props.users)
+const UsersContainer: React.FC<PropsUsers> = ({ users, loading, ...props }) => {
 
 	useEffect(() => {
 		props.fetchUsers()
 	}, []);
-
+	const userList = users.map(user => <User
+		name={user.name}
+		address={user.address}
+		company={user.company}
+	/>)
+	console.log(userList)
 	return (
 		<div>
-			{ }
+			{userList}
 		</div>
 	);
 };

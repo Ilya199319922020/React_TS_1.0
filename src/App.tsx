@@ -1,13 +1,15 @@
 import React from 'react';
-import './App.css';
+import { Route, Routes, BrowserRouter } from 'react-router-dom';
 import UsersContainer from './components/Users/UsersContainer';
 
 const App: React.FC = () => {
   return (
-    <div className="App">
-      <UsersContainer/>
-    </div>
-  );
-}
+    <BrowserRouter>
+      <Routes>
+        <Route path='/' element={< UsersContainer />} />
+      </Routes>
+    </BrowserRouter>
+  )
+};
 
 export default App;
