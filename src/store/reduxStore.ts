@@ -15,4 +15,5 @@ export type ActionsTypes<T extends { [key: string]: (...args: any[]) => any }> =
 const composeEnhancers = (window as any).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 export const store = createStore(reducers, composeEnhancers(applyMiddleware(thunk)));
-
+//@ts-ignore
+window.store = store;

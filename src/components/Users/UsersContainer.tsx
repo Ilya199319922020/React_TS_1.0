@@ -1,6 +1,6 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { connect } from "react-redux";
-import { fetchUsers } from "../../store/reducers/userReducer";
+import { fetchUsers, fetchUsersSort } from "../../store/reducers/userReducer";
 import { Reducers } from "../../store/reduxStore";
 import User from "./User";
 
@@ -8,19 +8,40 @@ interface PropsUsers {
 	loading: boolean,
 	users: Array<any>,
 	fetchUsers: () => void,
+	fetchUsersSort: (isSortedByCity: boolean, isSortedByCompany: boolean) => void
 };
 
 const UsersContainer: React.FC<PropsUsers> = ({ users, loading, ...props }) => {
 
+	const [isSortedByCity, setIsSortedByCity] = useState(false);
+	const [isSortedByCompany, setIsSortedByCompany] = useState(false);
+
 	useEffect(() => {
-		props.fetchUsers()
+		props.fetchUsers();
 	}, []);
+
+	useEffect(() => {
+		if (isSortedByCity) {
+			props.fetchUsersSort(isSortedByCity, isSortedByCompany);
+		}
+		if (isSortedByCompany) {
+			props.fetchUsersSort(isSortedByCity, isSortedByCompany)
+		}
+	}, [isSortedByCity]);
+
+	if (loading) {
+		return <b>Идёт загрузка...</b>
+	}
+
 	const userList = users.map(user => <User
 		name={user.name}
 		address={user.address}
 		company={user.company}
-	/>)
-	console.log(userList)
+		key={user.id}
+		setIsSortedByCity={setIsSortedByCity}
+		setIsSortedByCompany={setIsSortedByCompany}
+	/>);
+
 	return (
 		<div>
 			{userList}
@@ -35,4 +56,4 @@ const mapStateToProps = (state: Reducers) => {
 	}
 };
 
-export default connect(mapStateToProps, { fetchUsers })(UsersContainer);
+export default connect(mapStateToProps, { fetchUsers, fetchUsersSort })(UsersContainer);
