@@ -1,6 +1,10 @@
+import { useState } from 'react';
 import { NavLink } from 'react-router-dom';
+import ProfileUser from './ProfileUser/ProfileUser';
 
-const User: React.FC<any> = ({ name, address, company, ...props }) => {
+const User: React.FC<any> = ({ name, address, company, user, ...props }) => {
+
+	const [isProfileUser, setIsProfileUser] = useState<boolean>(false);
 
 	const onIsSortedByCity = (): void => {
 		props.setIsSortedByCity(true);
@@ -10,6 +14,11 @@ const User: React.FC<any> = ({ name, address, company, ...props }) => {
 		props.setIsSortedByCompany(true);
 		props.setIsSortedByCity(false);
 	}
+
+	const onIsProfileUser = (): void => {
+		setIsProfileUser(true);
+	};
+
 	return (
 		<div >
 			<div>
@@ -18,13 +27,17 @@ const User: React.FC<any> = ({ name, address, company, ...props }) => {
 				<button onClick={onIsSortedByCompany}>по компании</button>
 			</div>
 			<div>
-				<div>{name}</div>
-				<div>{address.city}</div>
-				<div>{company.name}</div>
-				<div>
-					<span></span>
-					<NavLink to=''>Подробнее</NavLink>
-				</div>
+				{!isProfileUser
+					? <div>
+						<div>{name}</div>
+						<div>{address.city}</div>
+						<div>{company.name}</div>
+						<div>
+							<span></span>
+							<NavLink onClick={onIsProfileUser} to=''>Подробнее</NavLink>
+						</div>
+					</div>
+					: <ProfileUser name={name} />}
 			</div>
 		</div>
 	);

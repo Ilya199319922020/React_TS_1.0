@@ -5,7 +5,7 @@ import { ActionsTypes, Reducers } from "../reduxStore";
 const initialState: UsersState = {
 	loading: false,
 	users: [],
-};
+	};
 
 export interface UsersState {
 	loading: boolean,

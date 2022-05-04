@@ -24,16 +24,20 @@ const UsersContainer: React.FC<PropsUsers> = ({ users, loading, ...props }) => {
 		if (isSortedByCity) {
 			props.fetchUsersSort(isSortedByCity, isSortedByCompany);
 		}
+	}, [isSortedByCity]);
+
+	useEffect(() => {
 		if (isSortedByCompany) {
 			props.fetchUsersSort(isSortedByCity, isSortedByCompany)
 		}
-	}, [isSortedByCity]);
+	}, [isSortedByCompany]);
 
 	if (loading) {
 		return <b>Идёт загрузка...</b>
 	}
 
 	const userList = users.map(user => <User
+	user={user}
 		name={user.name}
 		address={user.address}
 		company={user.company}
