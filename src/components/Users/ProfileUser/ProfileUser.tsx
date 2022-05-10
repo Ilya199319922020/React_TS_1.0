@@ -5,7 +5,6 @@ import * as Yup from 'yup';
 
 const ProfileUser: React.FC<any> = (props) => {
 
-
 	return (
 		<div >
 			<header>
@@ -13,7 +12,6 @@ const ProfileUser: React.FC<any> = (props) => {
 				<button>Редактировать</button>
 			</header>
 			<ProfileForm />
-
 		</div>
 	);
 };
@@ -71,56 +69,55 @@ const ProfileForm: React.FC<any> = (props) => {
 							<div>
 								<div>
 									Name
-									<Field component={'textarea'} type={'textarea'} name={'Name'}
+									<Field component={'input'} type={'input'} name={'Name'}
 										placeholder={'сюда значение из пропса'}
 									/>
 									<ErrorMessage name='newMessageText' />
-								</div>
-								<div>
+								</div>								<div>
 									User name
-									<Field component={'textarea'} type={'textarea'} name={'User_name'}
+									<Field component={'input'} type={'input'} name={'User_name'}
 										placeholder={'сюда значение из пропса'}
 									/>
 									<ErrorMessage name='newMessageText' />
 								</div>
 								<div>
 									E-mail
-									<Field component={'textarea'} type={'textarea'} name={'E_mail'}
+									<Field component={'input'} type={'input'} name={'E_mail'}
 										placeholder={'сюда значение из пропса'}
 									/>
 									<ErrorMessage name='newMessageText' />
 								</div>
 								<div>
 									Street
-									<Field component={'textarea'} type={'textarea'} name={'Street'}
+									<Field component={'input'} type={'input'} name={'Street'}
 										placeholder={'сюда значение из пропса'}
 									/>
 									<ErrorMessage name='newMessageText' />
 								</div>
 								<div>
 									City
-									<Field component={'textarea'} type={'textarea'} name={'City'}
+									<Field component={'input'} type={'input'} name={'City'}
 										placeholder={'сюда значение из пропса'}
 									/>
 									<ErrorMessage name='newMessageText' />
 								</div>
 								<div>
 									Zip code
-									<Field component={'textarea'} type={'textarea'} name={'Zip_code'}
+									<Field component={'input'} type={'input'} name={'Zip_code'}
 										placeholder={'сюда значение из пропса'}
 									/>
 									<ErrorMessage name='newMessageText' />
 								</div>
 								<div>
 									Phone
-									<Field component={'textarea'} type={'textarea'} name={'Phone'}
+									<Field component={'input'} type={'input'} name={'Phone'}
 										placeholder={'сюда значение из пропса'}
 									/>
 									<ErrorMessage name='newMessageText' />
 								</div>
 								<div>
 									Website
-									<Field component={'textarea'} type={'textarea'} name={'Website'}
+									<Field component={'input'} type={'input'} name={'Website'}
 										placeholder={'сюда значение из пропса'}
 									/>
 									<ErrorMessage name='newMessageText' />
