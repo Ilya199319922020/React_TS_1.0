@@ -5,11 +5,13 @@ import { ActionsTypes, Reducers } from "../reduxStore";
 const initialState: UsersState = {
 	loading: false,
 	users: [],
-	};
+	userProfile: [],
+};
 
 export interface UsersState {
 	loading: boolean,
 	users: Array<any>,
+	userProfile: Array<any>,
 };
 
 const userReducer = (state = initialState, action: UsersAction): UsersState => {
@@ -27,6 +29,7 @@ const userReducer = (state = initialState, action: UsersAction): UsersState => {
 				...state,
 				loading: false, users: action.users
 			}
+
 		case "SORT_USERS_CITY":
 			return {
 				...state,
@@ -43,7 +46,12 @@ const userReducer = (state = initialState, action: UsersAction): UsersState => {
 					? 1 : ((b.company.name > a.company.name)
 						? -1 : 0))
 			}
-
+		case 'FETCH_USER_PROFILE':
+			return {
+				...state,
+				loading: false,
+				userProfile: state.users.filter(u => (u.id === action.currentIdProfile))
+			}
 		default:
 			return state;
 	}
@@ -54,8 +62,8 @@ export const actions = {
 	setFetchUsers: () => ({ type: 'FETCH_USERS', } as const),
 	setFetchUsersSuccess: (users: Array<any>) => ({ type: 'FETCH_USERS_SUCCESS', users } as const),
 	setFetchUsersSortCity: (users: Array<any>) => ({ type: 'SORT_USERS_CITY', users } as const),
-	setFetchUsersSortCompany: (users: Array<any>) => ({ type: "SORT_USERS_COMPANY", users } as const)
-
+	setFetchUsersSortCompany: (users: Array<any>) => ({ type: "SORT_USERS_COMPANY", users } as const),
+	setUserProfile: (currentIdProfile: Number) => ({ type: 'FETCH_USER_PROFILE', currentIdProfile } as const),
 };
 
 type ThunkType = ThunkAction<Promise<void>, Reducers, unknown, UsersAction>
@@ -80,6 +88,12 @@ export const fetchUsersSort = (isSortedByCity: boolean, isSortedByCompany: boole
 		if (isSortedByCompany) {
 			dispatch(actions.setFetchUsersSortCompany(response))
 		}
+	}
+};
+
+export const fetchUserProfile = (currentIdProfile: Number): ThunkType => {
+	return async (dispatch) => {
+		dispatch(actions.setUserProfile(currentIdProfile))
 	}
 };
 

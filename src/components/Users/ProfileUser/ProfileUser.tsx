@@ -3,7 +3,7 @@ import * as Yup from 'yup';
 
 
 
-const ProfileUser: React.FC<any> = (props) => {
+const ProfileUser: React.FC<any> = ({name, ...props}) => {
 
 	return (
 		<div >
@@ -11,7 +11,7 @@ const ProfileUser: React.FC<any> = (props) => {
 				<h1>Профиль пользователя</h1>
 				<button>Редактировать</button>
 			</header>
-			<ProfileForm />
+			<ProfileForm name={name} />
 		</div>
 	);
 };
@@ -29,11 +29,13 @@ interface ValuesForm {
 };
 
 const ProfileForm: React.FC<any> = (props) => {
+
 	const onSubmit = (values: ValuesForm): void => {
 		console.log(values);
 	};
+	
 	const initialValues: ValuesForm = {
-		Name: '',
+		Name: props.name,
 		User_name: '',
 		E_mail: '',
 		Street: '',
@@ -68,9 +70,10 @@ const ProfileForm: React.FC<any> = (props) => {
 						<div >
 							<div>
 								<div>
+									{props.name}
 									Name
 									<Field component={'input'} type={'input'} name={'Name'}
-										placeholder={'сюда значение из пропса'}
+										placeholder={props.name}
 									/>
 									<ErrorMessage name='newMessageText' />
 								</div>								<div>

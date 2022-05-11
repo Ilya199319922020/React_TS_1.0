@@ -1,8 +1,8 @@
 import { useState } from 'react';
-import { NavLink } from 'react-router-dom';
 import ProfileUser from './ProfileUser/ProfileUser';
+import User from './User/User';
 
-const User: React.FC<any> = ({ name, address, company, user, currentIdProfile, ...props }) => {
+const Users: React.FC<any> = ({ users, userProfile, currentIdProfile, setCurrentIdProfile, ...props }) => {
 
 	const onIsSortedByCity = (): void => {
 		props.setIsSortedByCity(true);
@@ -13,9 +13,17 @@ const User: React.FC<any> = ({ name, address, company, user, currentIdProfile, .
 		props.setIsSortedByCity(false);
 	};
 
-	const onCurrentId = (): void => {
-		props.setCurrentIdProfile(user.id);
-	};
+	const userList = [...users].map((user: any) => <User
+		name={user.name}
+		address={user.address}
+		company={user.company}
+		id={user.id}
+		setCurrentIdProfile={setCurrentIdProfile}
+		key={user.id}
+	/>);
+
+	const user = [...userProfile]
+		.map((u: any) => <ProfileUser key={u.id} name={u.name} />);
 
 	return (
 		<div >
@@ -26,20 +34,12 @@ const User: React.FC<any> = ({ name, address, company, user, currentIdProfile, .
 			</div>
 			<div>
 				{currentIdProfile
-					? <ProfileUser name={name} />
-					: <div>
-						<div>{name}</div>
-						<div>{address.city}</div>
-						<div>{company.name}</div>
-						<div>
-							<span></span>
-							<NavLink onClick={onCurrentId} to=''>Подробнее</NavLink>
-						</div>
-					</div>}
-
+					? user
+					: userList}
 			</div>
 		</div>
 	);
 };
 
-export default User;
+
+export default Users;

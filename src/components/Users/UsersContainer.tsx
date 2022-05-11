@@ -1,18 +1,19 @@
 import { useEffect, useState } from "react";
 import { connect } from "react-redux";
-import { fetchUsers, fetchUsersSort } from "../../store/reducers/userReducer";
+import { fetchUsers, fetchUsersSort, fetchUserProfile } from "../../store/reducers/userReducer";
 import { Reducers } from "../../store/reduxStore";
-import ProfileUser from "./ProfileUser/ProfileUser";
-import User from "./User";
+import Users from "./Users";
 
 interface PropsUsers {
 	loading: boolean,
 	users: Array<any>,
+	userProfile: Array<any>,
 	fetchUsers: () => void,
-	fetchUsersSort: (isSortedByCity: boolean, isSortedByCompany: boolean) => void
+	fetchUsersSort: (isSortedByCity: boolean, isSortedByCompany: boolean) => void,
+	fetchUserProfile: (currentIdProfile: Number) => void,
 };
 
-const UsersContainer: React.FC<PropsUsers> = ({ users, loading, ...props }) => {
+const UsersContainer: React.FC<PropsUsers> = ({ users, loading, userProfile, ...props }) => {
 
 	const [isSortedByCity, setIsSortedByCity] = useState(false);
 	const [isSortedByCompany, setIsSortedByCompany] = useState(false);
@@ -34,28 +35,26 @@ const UsersContainer: React.FC<PropsUsers> = ({ users, loading, ...props }) => {
 		}
 	}, [isSortedByCompany]);
 
+	useEffect(() => {
+		if (currentIdProfile) {
+			props.fetchUserProfile(currentIdProfile)
+		}
+	}, [currentIdProfile])
+
 	if (loading) {
 		return <b>Идёт загрузка...</b>
 	}
 
-	const userList = users.map(user => <User
-		user={user}
-		name={user.name}
-		address={user.address}
-		company={user.company}
-		key={user.id}
-		setIsSortedByCity={setIsSortedByCity}
-		setIsSortedByCompany={setIsSortedByCompany}
-		setCurrentIdProfile={setCurrentIdProfile}
-		currentIdProfile={currentIdProfile}
-	/>);
-
-	return (
+		return (
 		<>
-			{!currentIdProfile
-				? userList
-				: [...users].filter(u => u.id === currentIdProfile)
-					.map(profile => <ProfileUser key={profile.id} />)}
+			<Users
+				users={users}
+				userProfile={userProfile}
+				setIsSortedByCity={setIsSortedByCity}
+				setIsSortedByCompany={setIsSortedByCompany}
+				setCurrentIdProfile={setCurrentIdProfile}
+				currentIdProfile={currentIdProfile}
+			/>
 		</>
 	);
 };
@@ -64,7 +63,8 @@ const mapStateToProps = (state: Reducers) => {
 	return {
 		users: state.users.users,
 		loading: state.users.loading,
+		userProfile: state.users.userProfile,
 	}
 };
 
-export default connect(mapStateToProps, { fetchUsers, fetchUsersSort })(UsersContainer);
+export default connect(mapStateToProps, { fetchUsers, fetchUsersSort, fetchUserProfile })(UsersContainer);
