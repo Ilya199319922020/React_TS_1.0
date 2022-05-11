@@ -13,7 +13,7 @@ const Users: React.FC<any> = ({ users, userProfile, currentIdProfile, setCurrent
 		props.setIsSortedByCity(false);
 	};
 
-	const userList = [...users].map((user: any) => <User
+	const userList = users.map((user: any) => <User
 		name={user.name}
 		address={user.address}
 		company={user.company}
@@ -22,8 +22,8 @@ const Users: React.FC<any> = ({ users, userProfile, currentIdProfile, setCurrent
 		key={user.id}
 	/>);
 
-	const user = [...userProfile]
-		.map((u: any) => <ProfileUser key={u.id} name={u.name} />);
+	const user = userProfile
+		.map((u: any) => <ProfileUser key={u.id} profileInfo={u}/>);
 
 	return (
 		<div >

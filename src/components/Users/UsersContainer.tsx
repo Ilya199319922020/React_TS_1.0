@@ -45,7 +45,7 @@ const UsersContainer: React.FC<PropsUsers> = ({ users, loading, userProfile, ...
 		return <b>Идёт загрузка...</b>
 	}
 
-		return (
+	return (
 		<>
 			<Users
 				users={users}
