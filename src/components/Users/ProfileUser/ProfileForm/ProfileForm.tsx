@@ -1,4 +1,5 @@
 import { Formik, Form, Field, ErrorMessage, } from 'formik';
+import { useState } from 'react';
 import * as Yup from 'yup';
 
 interface ValuesForm {
@@ -13,9 +14,11 @@ interface ValuesForm {
 	Comment: string,
 };
 
-const ProfileForm: React.FC<{ [key: string]: any }> = (props) => {
-	
+const ProfileForm: React.FC<{ [key: string]: any }> = ({ isSubmitted, ...props }) => {
+
 	const { name, username, email, address, phone, website } = props.profileInfo;
+
+
 	const onSubmit = (values: ValuesForm): void => {
 		console.log(values);
 	};
@@ -44,69 +47,72 @@ const ProfileForm: React.FC<{ [key: string]: any }> = (props) => {
 		Comment: Yup.string(),
 
 	});
+
+
 	return (
 		<Formik
 			initialValues={initialValues}
 			onSubmit={onSubmit}
 			validationSchema={validationSchema}
+
 		>
 			{formik => {
 				return (
-					<Form>
-						<div >
+					<Form >
+						<div>
 							<div>
 								<div>
 									Name
 									<Field component={'input'} type={'input'} name={'Name'}
-										placeholder={name}
+										placeholder={name} disabled={isSubmitted}
 									/>
 									<ErrorMessage name='newMessageText' />
 								</div>								<div>
 									User name
 									<Field component={'input'} type={'input'} name={'User_name'}
-										placeholder={username}
+										placeholder={username} disabled={isSubmitted}
 									/>
 									<ErrorMessage name='newMessageText' />
 								</div>
 								<div>
 									E-mail
 									<Field component={'input'} type={'input'} name={'E_mail'}
-										placeholder={email}
+										placeholder={email} disabled={isSubmitted}
 									/>
 									<ErrorMessage name='newMessageText' />
 								</div>
 								<div>
 									Street
 									<Field component={'input'} type={'input'} name={'Street'}
-										placeholder={address.street}
+										placeholder={address.street} disabled={isSubmitted}
 									/>
 									<ErrorMessage name='newMessageText' />
 								</div>
 								<div>
 									City
 									<Field component={'input'} type={'input'} name={'City'}
-										placeholder={address.city}
+										placeholder={address.city} disabled={isSubmitted}
 									/>
 									<ErrorMessage name='newMessageText' />
 								</div>
 								<div>
 									Zip code
 									<Field component={'input'} type={'input'} name={'Zip_code'}
-										placeholder={address.zipcode}
+										placeholder={address.zipcode} disabled={isSubmitted}
 									/>
 									<ErrorMessage name='newMessageText' />
 								</div>
 								<div>
 									Phone
 									<Field component={'input'} type={'input'} name={'Phone'}
-										placeholder={phone}
+										placeholder={phone} disabled={isSubmitted}
 									/>
 									<ErrorMessage name='newMessageText' />
 								</div>
 								<div>
 									Website
 									<Field component={'input'} type={'input'} name={'Website'}
-										placeholder={website}
+										placeholder={website} disabled={isSubmitted}
 									/>
 									<ErrorMessage name='newMessageText' />
 								</div>
@@ -114,19 +120,19 @@ const ProfileForm: React.FC<{ [key: string]: any }> = (props) => {
 								<div>
 									Comment
 									<Field component={'textarea'} type={'textarea'} name={'Comment'}
-										placeholder={''}
+										placeholder={''} disabled={isSubmitted}
 									/>
 									<ErrorMessage name='newMessageText' />
 								</div>
 
 							</div>
 							<button type='submit'
-								disabled={(!formik.isValid && !formik.dirty) || formik.isSubmitting}>Отправить</button>
+								disabled={isSubmitted || (!formik.isValid && !formik.dirty) || formik.isSubmitting}>Отправить</button>
 						</div>
 					</Form>)
 			}
 			}
-		</Formik>
+		</Formik >
 
 
 	)
