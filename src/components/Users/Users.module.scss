@@ -1,0 +1,57 @@
+a {
+	text-decoration: none;
+}
+
+button {
+	cursor: pointer
+}
+
+%styletext {
+	font-family: 'Roboto';
+	font-style: normal;
+	font-weight: 400;
+	font-size: 12px;
+	line-height: 14px;
+}
+
+$pd: 10.05px;
+
+.users {
+	margin: 0 auto;
+	display: flex;
+	max-width: 665px;
+	max-height: 1028px;
+
+	.users__navbar {
+		display: flex;
+		flex-direction: column;
+		width: 152px;
+		height: 1028px;
+		background: #BDBDBD;
+		padding: 35.17px 0 0 20.27px;
+
+	}
+
+	span {
+		color: #000000;
+		margin-bottom: $pd;
+		@extend %styletext;
+	}
+
+	button {
+		background: #4B51EF;
+		border-radius: 5px;
+		color: #FFFFFF;
+		border: 0px solid #4B51EF;
+		width: 105.39px;
+		height: 24.12px;
+		@extend %styletext;
+	}
+
+	button:nth-child(odd) {
+		width: 86.13px;
+		height: 24.12px;
+		margin-top: $pd;
+	}
+
+}

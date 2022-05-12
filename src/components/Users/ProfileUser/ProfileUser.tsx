@@ -10,7 +10,7 @@ const ProfileUser: React.FC<{ [key: string]: any }> = ({ profileInfo }) => {
 	return (
 		<div >
 			<header>
-				<h1>Профиль пользователя</h1>
+				<h2>Профиль пользователя</h2>
 				<button onClick={onSetIisSubmitted}>Редактировать</button>
 			</header>
 			<ProfileForm profileInfo={profileInfo} isSubmitted={isSubmitted} />

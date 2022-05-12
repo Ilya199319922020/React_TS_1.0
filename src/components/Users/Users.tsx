@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import ProfileUser from './ProfileUser/ProfileUser';
 import User from './User/User';
+import style from './Users.module.scss';
 
 const Users: React.FC<any> = ({ users, userProfile, currentIdProfile, setCurrentIdProfile, ...props }) => {
 
@@ -23,20 +24,25 @@ const Users: React.FC<any> = ({ users, userProfile, currentIdProfile, setCurrent
 	/>);
 
 	const user = userProfile
-		.map((u: any) => <ProfileUser key={u.id} profileInfo={u}/>);
+		.map((u: any) => <ProfileUser key={u.id} profileInfo={u} />);
 
 	return (
-		<div >
-			<div>
-				<span>Сортировка</span>
-				<button onClick={onIsSortedByCity}>по городу</button>
+		<div className={style.users}>
+			<header className={style.users__navbar}>
+				<span >Сортировка</span>
+				<button onClick={onIsSortedByCity} >по городу</button>
 				<button onClick={onIsSortedByCompany}>по компании</button>
-			</div>
-			<div>
-				{currentIdProfile
-					? user
-					: userList}
-			</div>
+			</header>
+			<main>
+				<div>
+					{currentIdProfile
+						? user
+						: userList}
+				</div>
+				<div>
+					<span>Найдено {users.length} пользователей</span>
+				</div>
+			</main>
 		</div>
 	);
 };
