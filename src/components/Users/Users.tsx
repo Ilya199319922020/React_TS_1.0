@@ -28,20 +28,24 @@ const Users: React.FC<any> = ({ users, userProfile, currentIdProfile, setCurrent
 
 	return (
 		<div className={style.users}>
-			<header className={style.users__navbar}>
+			<nav className={style.users__navbar}>
 				<span >Сортировка</span>
 				<button onClick={onIsSortedByCity} >по городу</button>
 				<button onClick={onIsSortedByCompany}>по компании</button>
-			</header>
-			<main>
+			</nav >
+
+			<main className={style.users__main}>
 				<div>
-					{currentIdProfile
-						? user
-						: userList}
+					<h1>Список пользователей</h1>
+					<div className={style.users__main_item}>
+						{currentIdProfile
+							? user
+							: userList}
+					</div>
 				</div>
-				<div>
-					<span>Найдено {users.length} пользователей</span>
-				</div>
+				<span className={style.users__main_countUser}>
+					Найдено {users.length} пользователей
+				</span>
 			</main>
 		</div>
 	);

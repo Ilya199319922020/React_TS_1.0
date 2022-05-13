@@ -19,8 +19,10 @@ $pd: 10.05px;
 .users {
 	margin: 0 auto;
 	display: flex;
-	max-width: 665px;
-	max-height: 1028px;
+
+	width: 665px;
+	height: 1028px;
+	font-family: 'Roboto';
 
 	.users__navbar {
 		display: flex;
@@ -28,30 +30,62 @@ $pd: 10.05px;
 		width: 152px;
 		height: 1028px;
 		background: #BDBDBD;
-		padding: 35.17px 0 0 20.27px;
+		padding: 35.17px 26.35px 0 20.27px;
+
+		span {
+			color: #000000;
+			margin-bottom: $pd;
+			@extend %styletext;
+		}
+
+		button {
+			background: #4B51EF;
+			border-radius: 5px;
+			color: #FFFFFF;
+			border: 0px solid #4B51EF;
+			width: 105.39px;
+			height: 24.12px;
+			@extend %styletext;
+		}
+
+		button:nth-child(even) {
+			width: 86.13px;
+			height: 24.12px;
+			margin-bottom: $pd;
+		}
 
 	}
 
-	span {
-		color: #000000;
-		margin-bottom: $pd;
-		@extend %styletext;
+	.users__main {
+		padding: 19px 59px 25px 34px;
+
+		h1 {
+			font-weight: 700;
+			font-size: 14px;
+			line-height: 16px;
+			padding: 0;
+			margin: 0 0 17px 0;
+		}
+
+		.users__main_item {
+			display: flex;
+			flex-direction: column;
+			justify-content: space-between;
+			height: 927px;
+
+		}
+
+
+		.users__main_countUser {
+			margin-top: 10px;
+			margin-bottom: 25px;
+			display: flex;
+			justify-content: flex-end;
+			font-size: 12px;
+			line-height: 14px;
+		}
 	}
 
-	button {
-		background: #4B51EF;
-		border-radius: 5px;
-		color: #FFFFFF;
-		border: 0px solid #4B51EF;
-		width: 105.39px;
-		height: 24.12px;
-		@extend %styletext;
-	}
 
-	button:nth-child(odd) {
-		width: 86.13px;
-		height: 24.12px;
-		margin-top: $pd;
-	}
 
 }

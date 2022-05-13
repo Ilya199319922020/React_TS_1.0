@@ -1,4 +1,5 @@
 import { NavLink } from "react-router-dom";
+import style from './User.module.scss';
 
 interface PropsUser {
 	id: Number,
@@ -15,18 +16,33 @@ const User: React.FC<PropsUser> = ({ id, name, address, company, ...props }) => 
 	};
 
 	return (
-		<div>
-			<h1>Список поьзователей</h1>
-			<div>
-				<div>{name}</div>
-				<div>{address.city}</div>
-				<div>{company.name}</div>
+		<div className={style.user}>
+
+			<div className={style.user__listInfo}>
+
+				<ul className={style.user__listInfo_itemElement}>
+					<li>
+						Ф.И.О.: <span>{name}</span>
+					</li>
+					<li>
+						город: <span>{address.city}</span>
+					</li>
+					<li>
+						компания: <span>{company.name}</span>
+					</li>
+				</ul>
+
+
+
+				<div className={style.user__listInfo_btnDetail}>
+					<NavLink onClick={onCurrentId} to=''>Подробнее</NavLink>
+				</div>
 			</div>
 
-			<div>
-				<span></span>
-				<NavLink onClick={onCurrentId} to=''>Подробнее</NavLink>
-			</div>
+
+
+
+
 		</div>
 	)
 }
