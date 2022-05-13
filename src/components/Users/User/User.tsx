@@ -39,11 +39,7 @@ const User: React.FC<PropsUser> = ({ id, name, address, company, ...props }) => 
 				</div>
 			</div>
 
-
-
-
-
-		</div>
+					</div>
 	)
 }
 

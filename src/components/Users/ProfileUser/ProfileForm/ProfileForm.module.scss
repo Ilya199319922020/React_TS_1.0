@@ -1,0 +1,84 @@
+%styleflex {
+	display: flex;
+	flex-direction: column;
+}
+
+%styletext {
+	font-family: 'Roboto';
+	font-style: normal;
+	font-weight: 400;
+	font-size: 8px;
+	line-height: 9px;
+	color: #000000;
+}
+
+%styleborder {
+	background: #FFFFFF;
+	border: 1px solid #D8D8D8;
+	border-radius: 5px;
+}
+
+.form {
+	@extend %styleflex;
+	align-items: flex-start;
+
+	.form__container {
+		@extend %styleflex;
+		justify-content: space-between;
+		width: 438px;
+		height: 463px;
+		background: #FFFFFF;
+		border: 1px solid #F3F3F3;
+		border-radius: 8px;
+		padding: 20px 0 19px 12px;
+
+		span {
+			@extend %styleflex;
+			@extend %styletext;
+			margin-bottom: 3px;
+		}
+
+		input {
+			@extend %styleborder;
+			width: 211px;
+			height: 22px;
+			@extend %styletext;
+			font-size: 10px;
+			line-height: 12px;
+			color: rgba(0, 0, 0, 0.3);
+		}
+
+		.form__container_commentItem {
+			@extend %styleborder;
+			min-width: 420px;
+			min-height: 55px;
+			resize: none;
+		}
+	}
+
+	.form__btn {
+		width: 452px;
+		margin-top: 10px;
+		display: flex;
+		flex-direction: row-reverse;
+
+		button {
+			@extend %styletext;
+			font-size: 12px;
+			line-height: 14px;
+			color: #FFFFFF;
+			width: 85px;
+			height: 24.12px;
+			border-radius: 5px;
+			background: #52CF4F;
+			border: 0px solid #52CF4F;
+		}
+
+		button:disabled {
+			background: #AFAFAF;
+			border: 0px solid #AFAFAF;
+		}
+	}
+
+
+}

@@ -6,6 +6,10 @@ button {
 	cursor: pointer
 }
 
+%stylebtn {
+	border: 0px solid #4B51EF;
+}
+
 %styletext {
 	font-family: 'Roboto';
 	font-style: normal;
@@ -20,15 +24,15 @@ $pd: 10.05px;
 	margin: 0 auto;
 	display: flex;
 
-	width: 665px;
-	height: 1028px;
+	max-width: 665px;
+	max-height: 1028px;
 	font-family: 'Roboto';
 
 	.users__navbar {
 		display: flex;
 		flex-direction: column;
-		width: 152px;
-		height: 1028px;
+		max-width: 152px;
+		max-height: 1028px;
 		background: #BDBDBD;
 		padding: 35.17px 26.35px 0 20.27px;
 
@@ -42,10 +46,11 @@ $pd: 10.05px;
 			background: #4B51EF;
 			border-radius: 5px;
 			color: #FFFFFF;
-			border: 0px solid #4B51EF;
+			// border: 0px solid #4B51EF;
 			width: 105.39px;
 			height: 24.12px;
 			@extend %styletext;
+			@extend %stylebtn;
 		}
 
 		button:nth-child(even) {
@@ -58,8 +63,12 @@ $pd: 10.05px;
 
 	.users__main {
 		padding: 19px 59px 25px 34px;
+		width: 665px;
+		height: 1028px;
+		left: 225px;
 
-		h1 {
+		h1,
+		h2 {
 			font-weight: 700;
 			font-size: 14px;
 			line-height: 16px;
@@ -67,12 +76,34 @@ $pd: 10.05px;
 			margin: 0 0 17px 0;
 		}
 
+		.users__main_header {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			margin-bottom: 10.88px;
+
+			h2 {
+				display: contents;
+				align-items: center;
+				// transform: translate(0, -50%)
+			}
+
+			button {
+				width: 116.67px;
+				height: 27.12px;
+				background: #4B51EF;
+				border-radius: 5px;
+				color: #FFFFFF;
+				@extend %stylebtn;
+			}
+		}
+
 		.users__main_item {
 			display: flex;
 			flex-direction: column;
 			justify-content: space-between;
 			height: 927px;
-
+			@import './User/User.module.scss';
 		}
 
 

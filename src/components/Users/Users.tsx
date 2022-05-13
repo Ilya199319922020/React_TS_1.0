@@ -4,6 +4,7 @@ import User from './User/User';
 import style from './Users.module.scss';
 
 const Users: React.FC<any> = ({ users, userProfile, currentIdProfile, setCurrentIdProfile, ...props }) => {
+	const [isSubmitted, setIisSubmitted] = useState(true);
 
 	const onIsSortedByCity = (): void => {
 		props.setIsSortedByCity(true);
@@ -13,6 +14,10 @@ const Users: React.FC<any> = ({ users, userProfile, currentIdProfile, setCurrent
 		props.setIsSortedByCompany(true);
 		props.setIsSortedByCity(false);
 	};
+
+	const onSetIisSubmitted = (): void => {
+		setIisSubmitted(isSubmitted => !isSubmitted)
+	}
 
 	const userList = users.map((user: any) => <User
 		name={user.name}
@@ -24,7 +29,8 @@ const Users: React.FC<any> = ({ users, userProfile, currentIdProfile, setCurrent
 	/>);
 
 	const user = userProfile
-		.map((u: any) => <ProfileUser key={u.id} profileInfo={u} />);
+		.map((u: any) => <ProfileUser key={u.id}
+			isSubmitted={isSubmitted} profileInfo={u} />);
 
 	return (
 		<div className={style.users}>
@@ -36,16 +42,21 @@ const Users: React.FC<any> = ({ users, userProfile, currentIdProfile, setCurrent
 
 			<main className={style.users__main}>
 				<div>
-					<h1>Список пользователей</h1>
+					{!currentIdProfile
+						? <h1>Список пользователей</h1>
+						: <div className={style.users__main_header}>
+							<h2>Профиль пользователя</h2>
+							<button onClick={onSetIisSubmitted}>Редактировать</button>
+						</div>}
 					<div className={style.users__main_item}>
 						{currentIdProfile
 							? user
 							: userList}
 					</div>
 				</div>
-				<span className={style.users__main_countUser}>
+				{!currentIdProfile && <span className={style.users__main_countUser}>
 					Найдено {users.length} пользователей
-				</span>
+				</span>}
 			</main>
 		</div>
 	);

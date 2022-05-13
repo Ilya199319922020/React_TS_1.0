@@ -1,5 +1,6 @@
 import { Formik, Form, Field, ErrorMessage, } from 'formik';
 import * as Yup from 'yup';
+import style from './ProfileForm.module.scss';
 
 interface ValuesForm {
 	Name: string,
@@ -58,75 +59,95 @@ const ProfileForm: React.FC<{ [key: string]: any }> = ({ isSubmitted, ...props }
 			{formik => {
 				return (
 					<Form >
-						<div>
-							<div>
+						<div className={style.form}>
+							<div className={style.form__container}>
 								<div>
-									Name
+									<span>Name</span>
 									<Field component={'input'} type={'input'} name={'Name'}
 										placeholder={name} disabled={isSubmitted}
 									/>
 									<ErrorMessage name='newMessageText' />
-								</div>								<div>
-									User name
+								</div>
+								<div>
+									<span>
+										User name
+									</span>
 									<Field component={'input'} type={'input'} name={'User_name'}
 										placeholder={username} disabled={isSubmitted}
 									/>
 									<ErrorMessage name='newMessageText' />
 								</div>
 								<div>
-									E-mail
+									<span>
+										E-mail
+									</span>
 									<Field component={'input'} type={'input'} name={'E_mail'}
 										placeholder={email} disabled={isSubmitted}
 									/>
 									<ErrorMessage name='newMessageText' />
 								</div>
 								<div>
-									Street
+									<span>
+										Street
+									</span>
 									<Field component={'input'} type={'input'} name={'Street'}
 										placeholder={address.street} disabled={isSubmitted}
 									/>
 									<ErrorMessage name='newMessageText' />
 								</div>
 								<div>
-									City
+									<span>
+										City
+									</span>
 									<Field component={'input'} type={'input'} name={'City'}
 										placeholder={address.city} disabled={isSubmitted}
 									/>
 									<ErrorMessage name='newMessageText' />
 								</div>
 								<div>
-									Zip code
+									<span>
+										Zip code
+									</span>
 									<Field component={'input'} type={'input'} name={'Zip_code'}
 										placeholder={address.zipcode} disabled={isSubmitted}
 									/>
 									<ErrorMessage name='newMessageText' />
 								</div>
 								<div>
-									Phone
+									<span>
+										Phone
+									</span>
 									<Field component={'input'} type={'input'} name={'Phone'}
 										placeholder={phone} disabled={isSubmitted}
 									/>
 									<ErrorMessage name='newMessageText' />
 								</div>
 								<div>
-									Website
+									<span>
+										Website
+									</span>
 									<Field component={'input'} type={'input'} name={'Website'}
 										placeholder={website} disabled={isSubmitted}
 									/>
 									<ErrorMessage name='newMessageText' />
 								</div>
-
 								<div>
-									Comment
-									<Field component={'textarea'} type={'textarea'} name={'Comment'}
+									<span>
+										Comment
+									</span>
+									<Field className={style.form__container_commentItem} component={'textarea'} type={'textarea'} name={'Comment'}
 										placeholder={''} disabled={isSubmitted}
 									/>
 									<ErrorMessage name='newMessageText' />
 								</div>
-
 							</div>
-							<button type='submit'
-								disabled={isSubmitted || (!formik.isValid && !formik.dirty) || formik.isSubmitting}>Отправить</button>
+							<div className={style.form__btn}>
+							<button  type='submit'
+								disabled={isSubmitted || (!formik.isValid && !formik.dirty) || formik.isSubmitting}>
+								Отправить
+							</button>
+							</div>
+							
 						</div>
 					</Form>)
 			}
