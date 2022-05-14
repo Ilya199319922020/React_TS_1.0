@@ -38,7 +38,7 @@ const ProfileForm: React.FC<{ [key: string]: any }> = ({ isSubmitted, ...props }
 	const validationSchema = () => Yup.object({
 		Name: Yup.string().required('Required'),
 		User_name: Yup.string().required('Required'),
-		E_mail: Yup.string().required('Required'),
+		E_mail: Yup.string().email('Invalid email').required('Required'),
 		Street: Yup.string().required('Required'),
 		City: Yup.string().required('Required'),
 		Zip_code: Yup.string().required('Required'),
@@ -64,9 +64,14 @@ const ProfileForm: React.FC<{ [key: string]: any }> = ({ isSubmitted, ...props }
 								<div>
 									<span>Name</span>
 									<Field component={'input'} type={'input'} name={'Name'}
+										className={formik.errors.Name && formik.touched.Name
+											? style.form__container_inputError : ''}
 										placeholder={name} disabled={isSubmitted}
 									/>
-									<ErrorMessage name='newMessageText' />
+
+									<ErrorMessage name='Name' component="span" className={style.form__container_error} />
+
+
 								</div>
 								<div>
 									<span>
@@ -75,7 +80,7 @@ const ProfileForm: React.FC<{ [key: string]: any }> = ({ isSubmitted, ...props }
 									<Field component={'input'} type={'input'} name={'User_name'}
 										placeholder={username} disabled={isSubmitted}
 									/>
-									<ErrorMessage name='newMessageText' />
+									<ErrorMessage name='User_name' />
 								</div>
 								<div>
 									<span>
@@ -84,7 +89,7 @@ const ProfileForm: React.FC<{ [key: string]: any }> = ({ isSubmitted, ...props }
 									<Field component={'input'} type={'input'} name={'E_mail'}
 										placeholder={email} disabled={isSubmitted}
 									/>
-									<ErrorMessage name='newMessageText' />
+									<ErrorMessage name='E_mail' />
 								</div>
 								<div>
 									<span>
@@ -93,7 +98,7 @@ const ProfileForm: React.FC<{ [key: string]: any }> = ({ isSubmitted, ...props }
 									<Field component={'input'} type={'input'} name={'Street'}
 										placeholder={address.street} disabled={isSubmitted}
 									/>
-									<ErrorMessage name='newMessageText' />
+									<ErrorMessage name='Street' />
 								</div>
 								<div>
 									<span>
@@ -102,7 +107,7 @@ const ProfileForm: React.FC<{ [key: string]: any }> = ({ isSubmitted, ...props }
 									<Field component={'input'} type={'input'} name={'City'}
 										placeholder={address.city} disabled={isSubmitted}
 									/>
-									<ErrorMessage name='newMessageText' />
+									<ErrorMessage name='City' />
 								</div>
 								<div>
 									<span>
@@ -111,7 +116,7 @@ const ProfileForm: React.FC<{ [key: string]: any }> = ({ isSubmitted, ...props }
 									<Field component={'input'} type={'input'} name={'Zip_code'}
 										placeholder={address.zipcode} disabled={isSubmitted}
 									/>
-									<ErrorMessage name='newMessageText' />
+									<ErrorMessage name='Zip_code' />
 								</div>
 								<div>
 									<span>
@@ -120,7 +125,7 @@ const ProfileForm: React.FC<{ [key: string]: any }> = ({ isSubmitted, ...props }
 									<Field component={'input'} type={'input'} name={'Phone'}
 										placeholder={phone} disabled={isSubmitted}
 									/>
-									<ErrorMessage name='newMessageText' />
+									<ErrorMessage name='Phone' />
 								</div>
 								<div>
 									<span>
@@ -129,7 +134,7 @@ const ProfileForm: React.FC<{ [key: string]: any }> = ({ isSubmitted, ...props }
 									<Field component={'input'} type={'input'} name={'Website'}
 										placeholder={website} disabled={isSubmitted}
 									/>
-									<ErrorMessage name='newMessageText' />
+									<ErrorMessage name='Website' />
 								</div>
 								<div>
 									<span>
@@ -138,16 +143,16 @@ const ProfileForm: React.FC<{ [key: string]: any }> = ({ isSubmitted, ...props }
 									<Field className={style.form__container_commentItem} component={'textarea'} type={'textarea'} name={'Comment'}
 										placeholder={''} disabled={isSubmitted}
 									/>
-									<ErrorMessage name='newMessageText' />
+									<ErrorMessage name='Comment' />
 								</div>
 							</div>
 							<div className={style.form__btn}>
-							<button  type='submit'
-								disabled={isSubmitted || (!formik.isValid && !formik.dirty) || formik.isSubmitting}>
-								Отправить
-							</button>
+								<button type='submit'
+									disabled={isSubmitted || (!formik.isValid && !formik.dirty) || formik.isSubmitting}>
+									Отправить
+								</button>
 							</div>
-							
+
 						</div>
 					</Form>)
 			}
