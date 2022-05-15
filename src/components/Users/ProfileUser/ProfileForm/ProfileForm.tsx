@@ -3,15 +3,15 @@ import * as Yup from 'yup';
 import style from './ProfileForm.module.scss';
 
 interface ValuesForm {
-	Name: string,
-	User_name: string,
-	E_mail: string,
-	Street: string,
-	City: string,
-	Zip_code: string,
-	Phone: string,
-	Website: string,
-	Comment: string,
+	name: string,
+	username: string,
+	email: string,
+	street: string,
+	city: string,
+	zipcode: string,
+	phone: string,
+	website: string,
+	comment: string,
 };
 
 const ProfileForm: React.FC<{ [key: string]: any }> = ({ isSubmitted, ...props }) => {
@@ -24,27 +24,27 @@ const ProfileForm: React.FC<{ [key: string]: any }> = ({ isSubmitted, ...props }
 	};
 
 	const initialValues: ValuesForm = {
-		Name: '',
-		User_name: '',
-		E_mail: '',
-		Street: '',
-		City: '',
-		Zip_code: '',
-		Phone: '',
-		Website: '',
-		Comment: '',
+		name: '',
+		username: '',
+		email: '',
+		street: '',
+		city: '',
+		zipcode: '',
+		phone: '',
+		website: '',
+		comment: '',
 
 	};
 	const validationSchema = () => Yup.object({
-		Name: Yup.string().required('Required'),
-		User_name: Yup.string().required('Required'),
-		E_mail: Yup.string().required('Required'),
-		Street: Yup.string().required('Required'),
-		City: Yup.string().required('Required'),
-		Zip_code: Yup.string().required('Required'),
-		Phone: Yup.string().required('Required'),
-		Website: Yup.string().required('Required'),
-		Comment: Yup.string(),
+		name: Yup.string().required('Required'),
+		username: Yup.string().required('Required'),
+		email: Yup.string().email('Invalid email').required('Required'),
+		street: Yup.string().required('Required'),
+		city: Yup.string().required('Required'),
+		zipcode: Yup.string().required('Required'),
+		phone: Yup.string().required('Required'),
+		website: Yup.string().required('Required'),
+		comment: Yup.string(),
 
 	});
 
@@ -63,91 +63,88 @@ const ProfileForm: React.FC<{ [key: string]: any }> = ({ isSubmitted, ...props }
 							<div className={style.form__container}>
 								<div>
 									<span>Name</span>
-									<Field component={'input'} type={'input'} name={'Name'}
-										placeholder={name} disabled={isSubmitted}
+									<Field component={'input'} type={'input'} name={'name'} disabled={isSubmitted}
+										placeholder={name}
 									/>
-									<ErrorMessage name='newMessageText' />
+									<ErrorMessage name='name' />
 								</div>
 								<div>
-									<span>
-										User name
-									</span>
-									<Field component={'input'} type={'input'} name={'User_name'}
-										placeholder={username} disabled={isSubmitted}
-									/>
-									<ErrorMessage name='newMessageText' />
+									<span>User name</span>
+									<Field component={'input'} type={'input'} name={'username'} placeholder={username}
+										disabled={isSubmitted} />
+									<ErrorMessage name='username' />
 								</div>
 								<div>
 									<span>
 										E-mail
 									</span>
-									<Field component={'input'} type={'input'} name={'E_mail'}
+									<Field component={'input'} type={'input'} name={'email'}
 										placeholder={email} disabled={isSubmitted}
 									/>
-									<ErrorMessage name='newMessageText' />
+									<ErrorMessage name='email' />
 								</div>
 								<div>
 									<span>
 										Street
 									</span>
-									<Field component={'input'} type={'input'} name={'Street'}
+									<Field component={'input'} type={'input'} name={'street'}
 										placeholder={address.street} disabled={isSubmitted}
 									/>
-									<ErrorMessage name='newMessageText' />
+									<ErrorMessage name='street' />
 								</div>
 								<div>
 									<span>
 										City
 									</span>
-									<Field component={'input'} type={'input'} name={'City'}
+									<Field component={'input'} type={'input'} name={'city'}
 										placeholder={address.city} disabled={isSubmitted}
 									/>
-									<ErrorMessage name='newMessageText' />
+									<ErrorMessage name='city' />
 								</div>
 								<div>
 									<span>
 										Zip code
 									</span>
-									<Field component={'input'} type={'input'} name={'Zip_code'}
+									<Field component={'input'} type={'input'} name={'zipcode'}
 										placeholder={address.zipcode} disabled={isSubmitted}
 									/>
-									<ErrorMessage name='newMessageText' />
+									<ErrorMessage name='zipcode' />
 								</div>
 								<div>
 									<span>
 										Phone
 									</span>
-									<Field component={'input'} type={'input'} name={'Phone'}
+									<Field component={'input'} type={'input'} name={'phone'}
 										placeholder={phone} disabled={isSubmitted}
 									/>
-									<ErrorMessage name='newMessageText' />
+									<ErrorMessage name='phone' />
 								</div>
 								<div>
 									<span>
 										Website
 									</span>
-									<Field component={'input'} type={'input'} name={'Website'}
+									<Field component={'input'} type={'input'} name={'website'}
 										placeholder={website} disabled={isSubmitted}
 									/>
-									<ErrorMessage name='newMessageText' />
+									<ErrorMessage name='website' />
 								</div>
 								<div>
 									<span>
 										Comment
 									</span>
-									<Field className={style.form__container_commentItem} component={'textarea'} type={'textarea'} name={'Comment'}
-										placeholder={''} disabled={isSubmitted}
+									<Field className={style.form__container_commentItem} component={'textarea'} type={'textarea'}
+										name={'comment'} placeholder={''} disabled={isSubmitted}
 									/>
-									<ErrorMessage name='newMessageText' />
+									<ErrorMessage name='comment' />
 								</div>
 							</div>
 							<div className={style.form__btn}>
-							<button  type='submit'
-								disabled={isSubmitted || (!formik.isValid && !formik.dirty) || formik.isSubmitting}>
-								Отправить
-							</button>
+								<button type='submit'
+									disabled={isSubmitted || (!formik.isValid && !formik.dirty) || formik.isSubmitting}>
+									Отправить
+								</button>
 							</div>
-							
+
 						</div>
 					</Form>)
 			}
