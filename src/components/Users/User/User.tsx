@@ -14,6 +14,7 @@ const User: React.FC<PropsUser> = ({ id, name, address, company, ...props }) => 
 	const onCurrentId = (): void => {
 		props.setCurrentIdProfile(id);
 	};
+	
 
 	return (
 		<div className={style.user}>
@@ -32,15 +33,14 @@ const User: React.FC<PropsUser> = ({ id, name, address, company, ...props }) => 
 					</li>
 				</ul>
 
-
-
 				<div className={style.user__listInfo_btnDetail}>
-					<NavLink onClick={onCurrentId} to=''>Подробнее</NavLink>
+					<NavLink onClick={onCurrentId} to={`/profile/${id}`}>Подробнее</NavLink>
 				</div>
 			</div>
 
-					</div>
+		</div>
 	)
+
 }
 
 export default User;

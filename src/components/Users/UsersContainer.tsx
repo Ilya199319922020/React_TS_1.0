@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { connect } from "react-redux";
-import { fetchUsers, fetchUsersSort, fetchUserProfile } from "../../store/reducers/userReducer";
+import { useParams } from "react-router-dom";
+import { fetchUsers, fetchUsersSort, fetchUserProfile, fetchRefrechUserProfileSuccess } from "../../store/reducers/userReducer";
 import { Reducers } from "../../store/reduxStore";
 import Users from "./Users";
 
@@ -10,17 +11,29 @@ interface PropsUsers {
 	userProfile: Array<any>,
 	fetchUsers: () => void,
 	fetchUsersSort: (isSortedByCity: boolean, isSortedByCompany: boolean) => void,
-	fetchUserProfile: (currentIdProfile: Number) => void,
+	fetchUserProfile: (currentIdProfile: number | string) => void,
+	fetchRefrechUserProfileSuccess: (userId: string) => void,
 };
 
 const UsersContainer: React.FC<PropsUsers> = ({ users, loading, userProfile, ...props }) => {
 
 	const [isSortedByCity, setIsSortedByCity] = useState(false);
 	const [isSortedByCompany, setIsSortedByCompany] = useState(false);
-	const [currentIdProfile, setCurrentIdProfile] = useState<null | number>(null);
+	const [currentIdProfile, setCurrentIdProfile] = useState<null | number | string>(null);
+
+	const { userId } = useParams() as any;
+	
+	useEffect(() => {
+		if (userId) {
+			 props.fetchRefrechUserProfileSuccess(userId);
+			setCurrentIdProfile(userId);
+		}
+	}, [userId]);
 
 	useEffect(() => {
-		props.fetchUsers();
+		if (!userId) {
+			props.fetchUsers();
+		}
 	}, []);
 
 	useEffect(() => {
@@ -37,7 +50,7 @@ const UsersContainer: React.FC<PropsUsers> = ({ users, loading, userProfile, ...
 
 	useEffect(() => {
 		if (currentIdProfile) {
-			props.fetchUserProfile(currentIdProfile)
+			props.fetchUserProfile(currentIdProfile);
 		}
 	}, [currentIdProfile])
 
@@ -67,4 +80,4 @@ const mapStateToProps = (state: Reducers) => {
 	}
 };
 
-export default connect(mapStateToProps, { fetchUsers, fetchUsersSort, fetchUserProfile })(UsersContainer);
+export default connect(mapStateToProps, { fetchUsers, fetchUsersSort, fetchUserProfile, fetchRefrechUserProfileSuccess })(UsersContainer);

@@ -5,6 +5,7 @@ interface PropsProfileUser {
 }
 
 const ProfileUser: React.FC<PropsProfileUser> = ({ profileInfo, isSubmitted }) => {
+	
 	return (
 		<div >
 			<ProfileForm profileInfo={profileInfo} isSubmitted={isSubmitted} />
