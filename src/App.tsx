@@ -6,6 +6,7 @@ const App: React.FC = () => {
   return (
     <BrowserRouter>
       <Routes>
+        <Route path='/profile/:userId' element={<UsersContainer />} />
         <Route path='/' element={< UsersContainer />} />
       </Routes>
     </BrowserRouter>

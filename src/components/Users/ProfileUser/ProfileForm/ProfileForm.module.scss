@@ -32,6 +32,7 @@
 		border-radius: 8px;
 		padding: 20px 0 19px 12px;
 
+
 		span {
 			@extend %styleflex;
 			@extend %styletext;
@@ -46,8 +47,10 @@
 			@extend %styletext;
 			font-size: 10px;
 			line-height: 12px;
-			color: rgba(0, 0, 0, 0.3);
+		}
 
+		input:disabled {
+			color: rgba(0, 0, 0, 0.3);
 		}
 
 		.form__container_commentItem {

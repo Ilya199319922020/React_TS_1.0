@@ -24,14 +24,14 @@ const ProfileForm: React.FC<{ [key: string]: any }> = ({ isSubmitted, ...props }
 	};
 
 	const initialValues: ValuesForm = {
-		name: '',
-		username: '',
-		email: '',
-		street: '',
-		city: '',
-		zipcode: '',
-		phone: '',
-		website: '',
+		name: name,
+		username: username,
+		email: email,
+		street: address.street,
+		city: address.city,
+		zipcode: address.zipcode,
+		phone: phone,
+		website: website,
 		comment: '',
 
 	};
@@ -64,7 +64,7 @@ const ProfileForm: React.FC<{ [key: string]: any }> = ({ isSubmitted, ...props }
 								<div>
 									<span>Name</span>
 									<Field component={'input'} type={'input'} name={'name'} disabled={isSubmitted}
-										placeholder={name}
+										 
 									/>
 									<ErrorMessage name='name' />
 								</div>
