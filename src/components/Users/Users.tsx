@@ -26,11 +26,14 @@ const Users: React.FC<any> = ({ users, userProfile, currentIdProfile, setCurrent
 		id={user.id}
 		setCurrentIdProfile={setCurrentIdProfile}
 		key={user.id}
-	/>);
+	/>
+	);
 
 	const user = userProfile
-		.map((u: any) => <ProfileUser key={u.id}
-			isSubmitted={isSubmitted} profileInfo={u} />);
+		.map((u: any) => <ProfileUser
+			key={u.id} isSubmitted={isSubmitted} profileInfo={u}
+		/>
+		);
 
 	return (
 		<div className={style.users}>
@@ -42,25 +45,32 @@ const Users: React.FC<any> = ({ users, userProfile, currentIdProfile, setCurrent
 
 			<main className={style.users__main}>
 				<div>
-					{!currentIdProfile
-						? <h1>Список пользователей</h1>
-						: <div className={style.users__main_header}>
-							<h2>Профиль пользователя</h2>
-							<button onClick={onSetIisSubmitted}>Редактировать</button>
-						</div>}
+					{
+						!currentIdProfile
+							? <h1>Список пользователей</h1>
+							: <div className={style.users__main_header}>
+								<h2>Профиль пользователя</h2>
+								<button onClick={onSetIisSubmitted}>
+									Редактировать
+								</button>
+							</div>
+					}
 					<div className={style.users__main_item}>
-						{currentIdProfile
-							? user
-							: userList}
+						{
+							currentIdProfile
+								? user
+								: userList
+						}
 					</div>
 				</div>
-				{!currentIdProfile && <span className={style.users__main_countUser}>
-					Найдено {users.length} пользователей
-				</span>}
+				{
+					!currentIdProfile && <span className={style.users__main_countUser}>
+						Найдено {users.length} пользователей
+					</span>
+				}
 			</main>
 		</div>
 	);
 };
-
 
 export default Users;
