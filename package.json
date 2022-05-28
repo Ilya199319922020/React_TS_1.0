@@ -2,7 +2,7 @@
   "name": "react_ts",
   "version": "0.1.0",
   "private": true,
-  "homepage": " https://ilya199319922020.github.io/",
+  "homepage": "https://ilya199319922020.github.io/",
   "dependencies": {
     "@fontsource/roboto": "^4.5.5",
     "@testing-library/jest-dom": "^5.16.4",
